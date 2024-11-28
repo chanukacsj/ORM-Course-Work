@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="638.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.RegistrationFormController">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="1200.0" layoutX="-1.0">
+         <image>
+            <Image url="@../asserts/freepik__retouch__35659.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="497.0" layoutX="132.0" layoutY="102.0" opacity="0.73" stroke="BLACK" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="0.2" width="358.0" />
+      <JFXButton buttonType="RAISED" layoutX="214.0" layoutY="531.0" onAction="#btnSignUpOnAction" prefHeight="37.0" prefWidth="193.0" style="-fx-background-color: #212884; -fx-background-radius: 20;" text="SignUp" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="162.0" layoutY="154.0" onMouseClicked="#lblHaveAccountOnMouseClicked" text="User Id:">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="161.0" layoutY="285.0" onMouseClicked="#lblHaveAccountOnMouseClicked" text="Password:">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="159.0" layoutY="348.0" onMouseClicked="#lblHaveAccountOnMouseClicked" prefHeight="19.0" prefWidth="101.0" text="Re - Password:">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="162.0" layoutY="413.0" onMouseClicked="#lblHaveAccountOnMouseClicked" text="Role:">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="162.0" layoutY="217.0" onMouseClicked="#lblHaveAccountOnMouseClicked" text="User Name:">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUser" layoutX="162.0" layoutY="243.0" prefHeight="30.0" prefWidth="306.0" />
+      <TextField fx:id="txtId" layoutX="161.0" layoutY="176.0" prefHeight="30.0" prefWidth="306.0" />
+      <ComboBox fx:id="CmbRole" layoutX="158.0" layoutY="437.0" prefHeight="30.0" prefWidth="306.0" />
+      <Hyperlink layoutX="261.0" layoutY="487.0" onAction="#linkLoginPageOnAction" text="I have an account" />
+      <PasswordField fx:id="txtPassword" layoutX="162.0" layoutY="309.0" prefHeight="30.0" prefWidth="306.0" />
+      <PasswordField fx:id="txtRePassword" layoutX="162.0" layoutY="372.0" prefHeight="30.0" prefWidth="306.0" />
+      <ImageView fitHeight="19.0" fitWidth="30.0" layoutX="439.0" layoutY="315.0" onMousePressed="#showPasswordOnMousePresseds" onMouseReleased="#showPasswordOnMouseReleased" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asserts/icons8-show-password-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="30.0" layoutX="439.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asserts/icons8-show-password-50.png" />
+         </image>
+      </ImageView>
+      <Text fill="#212884" layoutX="261.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SignUp Form " wrappingWidth="136.01837158203125">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
