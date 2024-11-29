@@ -137,14 +137,14 @@ public class RegistrationFormController {
         }
 
         String Password = txtPassword.getText();
-        boolean isPWValidate = Pattern.matches("[A-Z a-z 0-9]*", Password);
+        boolean isPWValidate = Pattern.matches("[A-z 0-9]{3,}", Password);
         if (!isPWValidate) {
             num = 1;
             Validate.vibrateTextField(txtPassword);
         }
 
         String RePassword = txtRePassword.getText();
-        boolean isRePWValidate = Pattern.matches("[A-Z a-z 0-9]*", RePassword);
+        boolean isRePWValidate = Pattern.matches("[A-z 0-9]{3,}", RePassword);
         if (!isRePWValidate) {
             num = 1;
             Validate.vibrateTextField(txtRePassword);

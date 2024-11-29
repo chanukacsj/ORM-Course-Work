@@ -216,7 +216,7 @@ public class UserFormController {
         }
 
         String Password = txtPassword.getText();
-        boolean isPWValidate = Pattern.matches("[A-Z a-z 0-9]*$", Password);
+        boolean isPWValidate = Pattern.matches("[A-z 0-9]{3,}", Password);
         if (!isPWValidate) {
             num = 1;
             Validate.vibrateTextField(txtPassword);
