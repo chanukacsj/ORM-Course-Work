@@ -5,6 +5,7 @@ import org.example.dao.DAOFactory;
 import org.example.dao.custom.EnrollmentDAO;
 import org.example.dao.custom.PaymentDAO;
 import org.example.dto.PaymentDTO;
+import org.example.entity.Enrollment;
 import org.example.entity.Payment;
 
 import java.io.IOException;
@@ -18,8 +19,8 @@ public class PaymentBoImpl implements PaymentBo {
 
     @Override
     public boolean save(PaymentDTO paymentDTO) throws Exception {
-
-        return paymentDAO.save(new Payment(paymentDTO.getPay_id(), paymentDTO.getPay_date(), paymentDTO.getPay_amount(),paymentDTO.getEid()));
+        Enrollment enrollment = enrollmentDAO.findEnrollmentById(paymentDTO.getEid());
+        return paymentDAO.save(new Payment(paymentDTO.getPay_id(), paymentDTO.getPay_date(), paymentDTO.getPay_amount(),enrollment));
     }
 
     @Override
@@ -29,8 +30,7 @@ public class PaymentBoImpl implements PaymentBo {
 
     @Override
     public boolean update(PaymentDTO paymentDTO) throws Exception {
-
-        return paymentDAO.update(new Payment(paymentDTO.getPay_id(), paymentDTO.getPay_date(), paymentDTO.getPay_amount(),paymentDTO.getEid()));
+       return false;
     }
 
     @Override
@@ -38,7 +38,8 @@ public class PaymentBoImpl implements PaymentBo {
         List<PaymentDTO> allPay = new ArrayList<>();
         List<Payment> all = paymentDAO.getAll();
         for (Payment payment : all) {
-            allPay.add(new PaymentDTO(payment.getPay_id(), payment.getPay_date(), payment.getPay_amount(),payment.getEnrollmentId()));
+            String enrollmentId = payment.getEnrollment() != null ? payment.getEnrollment().getEid() : null;
+            allPay.add(new PaymentDTO(payment.getPay_id(), payment.getPay_date(), payment.getPay_amount(), enrollmentId));
         }
         return allPay;
     }

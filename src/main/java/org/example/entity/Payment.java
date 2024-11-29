@@ -21,8 +21,10 @@ public class Payment {
     @Column(name = "pay_amount")
     private double pay_amount;
 
-    @Column(name = "enrollment")
-    private String enrollmentId;
+    @ManyToOne
+    @JoinColumn(name = "eid")
+    private Enrollment enrollment;
+
 
 
 }
