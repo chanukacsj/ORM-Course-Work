@@ -126,9 +126,8 @@ public class EnrollmentController {
     }
     private void clearFields() {
         txtId.setText("");
-        CmbStID.setValue("");
+
         LblStudentName.setText("");
-        CmbCourseID.setValue("");
         LblCourseName.setText("");
         txtupfrontpayment.setText("");
         txtTotalFee.setText("");

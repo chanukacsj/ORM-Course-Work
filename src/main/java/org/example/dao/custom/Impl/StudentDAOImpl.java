@@ -42,15 +42,38 @@ public class StudentDAOImpl implements StudentDAO {
         Session session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        String sql = "DELETE FROM student WHERE student_id = :id";
-        NativeQuery<Student> nativeQuery = session.createNativeQuery(sql);
-        nativeQuery.setParameter("id", id);
-        nativeQuery.executeUpdate();
+        try {
 
-        transaction.commit();
-        session.close();
+            String sql2 = "DELETE FROM payment WHERE eid IN (SELECT eid FROM enrollment WHERE student_id = :id)";
+            NativeQuery paymentQuery = session.createNativeQuery(sql2);
+            paymentQuery.setParameter("id", id);
+            paymentQuery.executeUpdate();
+
+            String sql1 = "DELETE FROM enrollment WHERE student_id = :id";
+            NativeQuery enrollmentQuery = session.createNativeQuery(sql1);
+            enrollmentQuery.setParameter("id", id);
+            enrollmentQuery.executeUpdate();
+
+            String sql = "DELETE FROM student WHERE student_id = :id";
+            NativeQuery studentQuery = session.createNativeQuery(sql);
+            studentQuery.setParameter("id", id);
+            studentQuery.executeUpdate();
+
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
+
         return true;
     }
+
 
     @Override
     public List<Student> getAll() {

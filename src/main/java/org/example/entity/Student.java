@@ -54,6 +54,13 @@ public class Student {
         enrollmentList.remove(enrollment);
         enrollment.setStudent(null);
     }
+    public void removeAllEnrollments() {
+        for (Enrollment enrollment : enrollmentList) {
+            enrollment.setStudent(null);
+        }
+        enrollmentList.clear();
+    }
+
 
     public Student(String id, String name, String address, String contact, String dob, String gen,String regDate) {
         this.id = id;
