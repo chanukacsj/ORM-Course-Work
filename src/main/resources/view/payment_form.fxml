@@ -66,20 +66,30 @@
             <Font size="10.0" />
          </font>
       </TextField>
-      <Label layoutX="256.0" layoutY="184.0" text="Payment Date:">
+      <Label layoutX="519.0" layoutY="180.0" text="Payment Date:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="LblDate" layoutX="364.0" layoutY="183.0" prefHeight="22.0" prefWidth="97.0">
+      <Label fx:id="LblDate" layoutX="627.0" layoutY="179.0" prefHeight="22.0" prefWidth="97.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="CmbEnrollmentId" layoutX="519.0" layoutY="116.0" prefHeight="30.0" prefWidth="206.0" />
+      <ComboBox fx:id="CmbEnrollmentId" layoutX="519.0" layoutY="116.0" onAction="#EnrollmentOnAction" prefHeight="30.0" prefWidth="206.0" />
       <Label layoutX="520.0" layoutY="91.0" text="Enrollment ID:">
          <font>
             <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="256.0" layoutY="180.0" text="Student Name:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblName" layoutX="359.0" layoutY="179.0" prefHeight="22.0" prefWidth="133.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
    </children>

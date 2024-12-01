@@ -1,12 +1,12 @@
 package org.example.dao.custom.Impl;
 
+import org.example.config.SessionFactoryConfig;
 import org.example.dao.custom.EnrollmentDAO;
 import org.example.entity.Enrollment;
 import org.example.entity.Program;
 import org.example.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.example.config.SessionFactoryConfig;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 
@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EnrollmentDAOImpl implements EnrollmentDAO {
-
 
 
     @Override
@@ -264,6 +263,38 @@ public class EnrollmentDAOImpl implements EnrollmentDAO {
         }
 
         return ids;
+    }
+
+    @Override
+    public String getStudentNameByEnrollmentId(String id) {
+        String name = null;
+
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            String sql = "select c.name from payment a " +
+                    "inner join enrollment b on a.eid = b.eid " +
+                    "inner join student c on b.student_id = c.student_id " +
+                    "where a.eid = :id";
+
+            NativeQuery<String> nativeQuery = session.createNativeQuery(sql);
+            nativeQuery.setParameter("id", id);
+
+            List<String> result = nativeQuery.getResultList();
+            if (!result.isEmpty()) {
+                name = result.get(0);
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return name;
     }
 
 }

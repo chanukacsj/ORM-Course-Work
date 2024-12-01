@@ -29,12 +29,9 @@ public class PaymentFormController {
 
     @FXML
     private Label LblDate;
-
     @FXML
-    private Label LblProgramName;
+    private Label LblName;
 
-    @FXML
-    private Label LblStName;
 
     @FXML
     private AnchorPane Load;
@@ -75,7 +72,7 @@ public class PaymentFormController {
     EnrollmentBo enrollmentBo = (EnrollmentBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ENROLLMENT);
     ProgramBo programBo = (ProgramBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PROGRAMS);
 
-    public void initialize() throws SQLException, ClassNotFoundException {
+    public void initialize() throws Exception {
         initializeTable();
         getAll();
         getEnrollmentIds();
@@ -197,7 +194,7 @@ public class PaymentFormController {
         return null;
     }
 
-    public void getEnrollmentIds() throws SQLException, ClassNotFoundException {
+    public void getEnrollmentIds() throws Exception {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         List<String> idList = enrollmentBo.getEnrollmentIds();
@@ -205,7 +202,11 @@ public class PaymentFormController {
             obList.add(id);
         }
         CmbEnrollmentId.setItems(obList);
+
     }
+//    private void getStudentName() throws Exception {
+//
+//    }
 
 
     public void clearFields() {
@@ -248,4 +249,9 @@ public class PaymentFormController {
         }
     }
 
+    public void EnrollmentOnAction(ActionEvent actionEvent) {
+        String id = CmbEnrollmentId.getValue().toString();
+        String name = enrollmentBo.getStudentNameByEnrollmentId(id);
+        LblName.setText(name);
+    }
 }
