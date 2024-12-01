@@ -109,27 +109,46 @@ public class PaymentFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws Exception {
-       boolean isValidate = validatePayment();
+        boolean isValidate = validatePayment();
 
-       if (isValidate) {
-           boolean isSaved = paymentBo.save(new PaymentDTO(
-                   txtId.getText(),
-                   LblDate.getText(),
-                   Double.parseDouble(txtFee.getText()),
-                   CmbEnrollmentId.getValue().toString()
+        if (isValidate) {
+            boolean isSaved = paymentBo.save(new PaymentDTO(
+                    txtId.getText(),
+                    LblDate.getText(),
+                    Double.parseDouble(txtFee.getText()),
+                    CmbEnrollmentId.getValue().toString()
 
-           ));
+            ));
 
-           if (isSaved) {
-               new Alert(Alert.AlertType.CONFIRMATION, "Payment Saved").show();
-           } else {
-               new Alert(Alert.AlertType.ERROR, "Not Saved").show();
-           }
-           getAll();
-           clearFields();
-           generateNextUserId();
-       }
+            if (isSaved) {
+                updateRemainingFee();
+                new Alert(Alert.AlertType.CONFIRMATION, "Payment Saved").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Not Saved").show();
+            }
+            getAll();
+            clearFields();
+            generateNextUserId();
+        }
     }
+
+    private void updateRemainingFee() throws SQLException, ClassNotFoundException {
+        try {
+            String eid = CmbEnrollmentId.getValue().toString();
+            double fee = Double.parseDouble(txtFee.getText());
+            double currentRemainingFee = enrollmentBo.getRemainingFeeByEnrollmentId(eid);
+            double newRemainingFee = currentRemainingFee - fee;
+            boolean isUpdated = enrollmentBo.updateRemainingFee(eid, newRemainingFee);
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Remaining Fee Updated").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Not Updated").show();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     void getPay(MouseEvent event) {
@@ -194,6 +213,7 @@ public class PaymentFormController {
         LblDate.setText("");
         txtFee.setText("");
     }
+
     private void generateNextUserId() {
         String nextId = null;
         try {
@@ -207,21 +227,22 @@ public class PaymentFormController {
         }
         txtId.setText(nextId);
     }
-    private boolean validatePayment() {
-        int num=0;
 
-        String contact=txtFee.getText();
-        boolean isContactValidate= Pattern.matches("^\\d+(\\.\\d{1,2})?$",contact);
-        if (!isContactValidate){
-            num=1;
+    private boolean validatePayment() {
+        int num = 0;
+
+        String contact = txtFee.getText();
+        boolean isContactValidate = Pattern.matches("^\\d+(\\.\\d{1,2})?$", contact);
+        if (!isContactValidate) {
+            num = 1;
             Validate.vibrateTextField(txtFee);
         }
 
-        if(num==1){
-            num=0;
+        if (num == 1) {
+            num = 0;
             return false;
-        }else {
-            num=0;
+        } else {
+            num = 0;
             return true;
 
         }

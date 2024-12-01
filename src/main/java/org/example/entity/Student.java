@@ -38,7 +38,7 @@ public class Student {
     private String regDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id") // This should match the "user_id" column in the User table
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
