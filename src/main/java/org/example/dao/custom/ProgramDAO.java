@@ -11,4 +11,5 @@ public interface ProgramDAO extends CrudDAO<Program> {
     public Program findCourseById(String ProgramId) throws Exception;
 
 
+    double getProgramFee(String id);
 }

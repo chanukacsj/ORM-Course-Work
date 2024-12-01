@@ -186,4 +186,30 @@ public class ProgramDAOImpl implements ProgramDAO {
 
         return program;
     }
+
+    @Override
+    public double getProgramFee(String id) {
+        double programFee = 0.0;
+
+        Session session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            String sql = "SELECT course_fee FROM programs WHERE program_id = :id";
+            NativeQuery<Double> nativeQuery = session.createNativeQuery(sql, Double.class);
+
+            nativeQuery.setParameter("id", id);
+
+            programFee = nativeQuery.getSingleResult();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return programFee;
+    }
 }

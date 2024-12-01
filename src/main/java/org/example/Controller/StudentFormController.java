@@ -90,6 +90,7 @@ public class StudentFormController {
     @FXML
     void btnClearOnAction(ActionEvent event) {
         clearFields();
+        generateNextUserId();
     }
 
     private void clearFields() {

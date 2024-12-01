@@ -24,4 +24,5 @@ public interface ProgramBo extends SuperBO {
 
     public String generateNewProgramID() throws SQLException, ClassNotFoundException, IOException;
 
+    double getProgramFee(String id);
 }

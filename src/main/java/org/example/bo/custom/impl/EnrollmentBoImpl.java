@@ -130,4 +130,9 @@ public class EnrollmentBoImpl implements EnrollmentBo {
         return enrollmentDAO.getAllEnrollmentIds();
     }
 
+    @Override
+    public String getStudentNameByEnrollmentId(String id) {
+        return enrollmentDAO.getStudentNameByEnrollmentId(id);
+    }
+
 }

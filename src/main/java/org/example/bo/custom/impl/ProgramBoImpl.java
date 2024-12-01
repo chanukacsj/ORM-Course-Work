@@ -58,4 +58,9 @@ public class ProgramBoImpl implements ProgramBo {
     public String generateNewProgramID() throws SQLException, ClassNotFoundException, IOException {
         return programDAO.generateNewID();
     }
+
+    @Override
+    public double getProgramFee(String id) {
+        return programDAO.getProgramFee(id);
+    }
 }

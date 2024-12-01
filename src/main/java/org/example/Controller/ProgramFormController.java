@@ -62,7 +62,7 @@ public class ProgramFormController {
     @FXML
     void btnClearOnAction(ActionEvent event) {
         clearFields();
-
+        generateNextUserId();
     }
     private void clearFields() {
         txtId.setText("");

@@ -123,6 +123,7 @@ public class EnrollmentController {
     @FXML
     void btnClearOnAction(ActionEvent event) {
         clearFields();
+        generateNextUserId();
     }
     private void clearFields() {
         txtId.setText("");
@@ -231,7 +232,6 @@ public class EnrollmentController {
             LblCourseName.setText(colcoursename.getCellData(index).toString());
             txtDate.setText(coldate.getCellData(index).toString());
             txtupfrontpayment.setText(colupfront_fee.getCellData(index).toString());
-            txtTotalFee.setText(colremain_fee.getCellData(index).toString());
             txtcomment.setText(colcomment.getCellData(index).toString());
         }
     }
@@ -273,6 +273,8 @@ public class EnrollmentController {
         String name = programBo.getProgramName(id);
 
         LblCourseName.setText(name);
+        double totalFee = programBo.getProgramFee(id);
+        txtTotalFee.setText(String.valueOf(totalFee));
     }
 
     private void getAll() throws SQLException, ClassNotFoundException {

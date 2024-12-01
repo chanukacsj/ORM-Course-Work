@@ -23,4 +23,5 @@ public interface EnrollmentBo extends SuperBO {
     public int getEnrollmentCount() throws Exception;
     List<String> getEnrollmentIds() throws SQLException, ClassNotFoundException;
 
+    String getStudentNameByEnrollmentId(String id);
 }
